@@ -1,7 +1,12 @@
 ---
+title: 'Meta-Learning with Gradient Descent'
+date: 2020-04-22
+permalink: /posts/2017/08/statistical_whitening/
+tags:
+  - whitening
 ---
 
-Introduction
+### Introduction
 
 Machine learning tasks can be expressed as optimizing an objective
 function. Gradient descent serves as a standard approach for minimizing
@@ -47,11 +52,7 @@ feed into another NN, with both of them trained jointly. The approach in
 our highlighted paper modifies the network architecture to generalize
 the approach to larger NN optimization problems.
 
-------------------------------------------------------------------------
-
-THINGS ABOVE THIS LINE ARE IN README ALREADY (CONVERTED TO MARKDOWN)
-
-Gradient Descent
+### Gradient Descent
 
 In elementary calculus classes, Euler's method is commonly presented as
 a method of approximating values of an ordinary differentiable function
@@ -101,7 +102,7 @@ difficult. It follows that we delve deeper into how we might learn such
 update rules rather than hand-design them in order to achieve optimal
 optimization.
 
-Fundamental Idea
+### Fundamental Idea
 
 As mentioned previously, the key goal is to learn an optimization
 algorithm, or optimizer, for an objective function
@@ -196,7 +197,7 @@ hidden states.
 
 ![image](images/image42.png)
 
-Examples and Experiments
+### Examples and Experiments
 
 A variety of experiments are performed to test the effectiveness of the
 learned optimizer in comparison to optimizers that were created by hand.
@@ -251,7 +252,7 @@ double the training image resolution. Since the curve for the LSTM
 optimizer has a lower loss at all steps, it suggests that this method of
 optimizing is promising in applications relating to Neural Art.
 
-Follow-up work
+### Follow-up work
 
 With meta-learning continuing to be a prolific field within machine
 learning, the ideas we have presented from the paper Learning to learn
@@ -272,43 +273,3 @@ meta-learning scheme, as demonstrated in the work of Zoph and Le
 potential for the continual development of artificial intelligence to
 gain human-like traits, as discussed by Lake, et al. \[2016\].
 
-Conclusion/final thoughts
-
-References
-
-Andrychowicz, M., Denil, M., Gomez, S., Hoffman, M. W., Pfau, D.,
-Schaul, T., \... & De Freitas,
-
-N. (2016). Learning to learn by gradient descent by gradient descent. In
-Advances in
-
-neural information processing systems (pp. 3981-3989).
-
-Finn, C., Abbeel, P., & Levine, S. (2017, August). Model-agnostic
-meta-learning for fast
-
-adaptation of deep networks. In Proceedings of the 34th International
-Conference on
-
-Machine Learning-Volume 70 (pp. 1126-1135). JMLR. org.
-
-Lake, B., Ullman, T., Tenenbaum, J., & Gershman, S. (2017). Building
-machines that learn
-
-and think like people. Behavioral and Brain Sciences, 40, E253.
-doi:10.1017/S014
-
-0525X16001837
-
-Zoph, B., & Le, Q. V. (2016). Neural architecture search with
-reinforcement learning. arXiv
-
-preprint arXiv:1611.01578.
-
-Some papers that cited this one:
-
-[https://dl.acm.org/doi/10.5555/3305381.3305498](https://www.google.com/url?q=https://dl.acm.org/doi/10.5555/3305381.3305498&sa=D&ust=1587683510181000)
-
-[https://arxiv.org/pdf/1611.01578.pdf](https://www.google.com/url?q=https://arxiv.org/pdf/1611.01578.pdf&sa=D&ust=1587683510181000)
-
-[https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/building-machines-that-learn-and-think-like-people/A9535B1D745A0377E16C590E14B94993](https://www.google.com/url?q=https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/building-machines-that-learn-and-think-like-people/A9535B1D745A0377E16C590E14B94993&sa=D&ust=1587683510182000)
