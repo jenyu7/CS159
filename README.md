@@ -273,3 +273,25 @@ meta-learning scheme, as demonstrated in the work of Zoph and Le
 potential for the continual development of artificial intelligence to
 gain human-like traits, as discussed by Lake, et al. \[2016\].
 
+### Final Thoughts
+
+We have seen through the definition of this new learning problem and the variety of research recently performed that meta-learning is a promising new field that suggests future optimization algorithms can be learned rather than handcrafted. In addition, through the empirical results found by this paper, we find that learned optimizers may perform better than hand-crafted optimizers in certain applications, which could allow enhanced performance of future machine learning models. However, it is important to be cautious in our praise of the experiment results, because of the limited reach of the experiments performed in this paper. Further research is needed in testing a greater variety of model applications.
+
+### References
+
+Andrychowicz, M., Denil, M., Gomez, S., Hoffman, M. W., Pfau, D., Schaul, T., ... & De Freitas,
+N. (2016). Learning to learn by gradient descent by gradient descent. In Advances in
+neural information processing systems (pp. 3981-3989).
+
+Finn, C., Abbeel, P., & Levine, S. (2017, August). Model-agnostic meta-learning for fast
+adaptation of deep networks. In Proceedings of the 34th International Conference on
+Machine Learning-Volume 70 (pp. 1126-1135). JMLR. org.
+
+Lake, B., Ullman, T., Tenenbaum, J., & Gershman, S. (2017). Building machines that learn
+and think like people. Behavioral and Brain Sciences, 40, E253. doi:10.1017/S014
+0525X16001837
+
+Zoph, B., & Le, Q. V. (2016). Neural architecture search with reinforcement learning. arXiv
+preprint arXiv:1611.01578.
+
+
