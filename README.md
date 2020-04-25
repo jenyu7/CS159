@@ -5,6 +5,7 @@ permalink: /posts/2017/08/statistical_whitening/
 tags:
   - whitening
 ---
+**By Timothy Yao, Jennifer Yu and  Cecelia Zhang**
 
 ### Introduction
 
