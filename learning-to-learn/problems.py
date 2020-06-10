@@ -21,6 +21,8 @@ from __future__ import print_function
 import os
 import tarfile
 import sys
+import pandas as pd
+import numpy as np
 
 from six.moves import urllib
 from six.moves import xrange  # pylint: disable=redefined-builtin
@@ -50,6 +52,45 @@ def simple():
 
   return build
 
+def breast_cancer(mode="train"):
+  """For our problem"""
+  # Creating data from file
+  data = pd.read_csv("data/wdbc.data", sep=",", header=None)
+  features = ["radius", "texture", "perimeter", "area", "smoothness", "compactness", "concavity", "concave pts",
+            "symmetry", "frac. dim"]
+  features3 = []
+  descr = ["mean", "stderr", "worst"]
+  for i in range(30):
+      if i < 10:
+          features3.append(descr[0] + " "+ features[i%10])
+      elif i < 20:
+          features3.append(descr[1] + " " + features[i%10])
+      else:
+          features3.append(descr[2] + " " + features[i%10])
+  data.columns = ["ID", "Malignant/Benign"] + features3
+
+  # Some cleaning and splitting
+  x = data.loc[:,features3]
+  classif = data["Malignant/Benign"]
+  y = []
+  for index in classif:
+      if index == "B":
+          y.append(0)
+      else:
+          y.append(1)
+  split = int(0.8 * len(x))
+  if mode == "train":
+      x = np.asarray(x[:split])
+      y = np.asarray(y[:split])
+  else:
+      x = np.asarray(x[split:])
+      y = np.asarray(y[split:])
+
+  def build():
+    input = tf.constant(x, dtype=tf.float32, name="inputs")
+    return tf.constant(y, dtype=tf.int64, name="labels")
+
+  return build
 
 def simple_multi_optimizer(num_dims=2):
   """Multidimensional simple problem."""
