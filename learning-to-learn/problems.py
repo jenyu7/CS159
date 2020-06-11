@@ -178,6 +178,58 @@ def _xent_loss(output, labels):
                                                         labels=labels)
   return tf.reduce_mean(loss)
 
+def breast_cancer_try(layers, activation="sigmoid", mode="train"):
+  if activation == "sigmoid":
+    activation_op = tf.sigmoid
+  elif activation == "relu":
+    activation_op = tf.nn.relu
+  else:
+    raise ValueError("{} activation not supported".format(activation))
+
+  data = pd.read_csv("data/wdbc.data", sep=",", header=None)
+  features = ["radius", "texture", "perimeter", "area", "smoothness", "compactness", "concavity", "concave pts", "symmetry", "frac. dim"]
+  features3 = []
+  descr = ["mean", "stderr", "worst"]
+  for i in range(30):
+    if i < 10:
+      features3.append(descr[0] + " " + features[i%10])
+    elif i < 20:
+      features3.append(descr[1] + " " + features[i%10])
+    else:
+      features3.append(descr[2] + " " + features[i%10])
+  data.columns = ["ID", "Malignant/Benign"] + features3
+
+  data_list = data.values.tolist()
+  data_y = []
+  data_x = []
+  for elem1 in data_list:
+    if elem1[1] == "M":
+      data_y.append(1)
+    else:
+      data_y.append(0)
+  for elem2 in data_list:
+    data_x.append(elem2[2:])
+
+  if mode == "train":
+    x = np.array(data_x[0:469])
+    y = np.array(data_y[0:469])
+  else:
+    x = np.array(data_x[469:])
+    y = np.array(data_y[469:])
+
+  x = tf.constant(x, dtype=tf.float32, name="inputs")
+  y = tf.constant(y, dtype=tf.int64, name="labels")
+
+  mlp = snt.nets.MLP(list(layers) + [2],
+                     activation=activation_op,
+                     initializers=_nn_initializers)
+  network = snt.Sequential([snt.BatchFlatten(), mlp])
+
+  def build():
+    output = network(x)
+    return _xent_loss(output, y)
+
+  return build
 
 def mnist(layers,  # pylint: disable=invalid-name
           activation="sigmoid",
