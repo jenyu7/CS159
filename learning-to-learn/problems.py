@@ -85,12 +85,18 @@ def breast_cancer(mode="train"):
   else:
       x = np.asarray(x[split:])
       y = np.asarray(y[split:])
+  x_shape=x.shape
+  y_shape=y.shape
 
   def build():
-    input = tf.constant(x, dtype=tf.float32, name="inputs")
-    return tf.constant(y, dtype=tf.int64, name="labels")
+    # input = tf.get_variable(tf.convert_to_tensor(x))
+    # return tf.get_variable(tf.convert_to_tensor(y))
+    input = tf.get_variable("x",
+                        # shape=[x.shape[0], x.shape[1]],
+                        dtype=tf.float64,
+                        initializer=tf.convert_to_tensor(x))
 
-  return build
+  return tf.constant(y, dtype=tf.int64, name="labels")
 
 def simple_multi_optimizer(num_dims=2):
   """Multidimensional simple problem."""
