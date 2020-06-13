@@ -52,51 +52,51 @@ def simple():
 
   return build
 
-def breast_cancer(mode="train"):
-  """For our problem"""
-  # Creating data from file
-  data = pd.read_csv("data/wdbc.data", sep=",", header=None)
-  features = ["radius", "texture", "perimeter", "area", "smoothness", "compactness", "concavity", "concave pts",
-            "symmetry", "frac. dim"]
-  features3 = []
-  descr = ["mean", "stderr", "worst"]
-  for i in range(30):
-      if i < 10:
-          features3.append(descr[0] + " "+ features[i%10])
-      elif i < 20:
-          features3.append(descr[1] + " " + features[i%10])
-      else:
-          features3.append(descr[2] + " " + features[i%10])
-  data.columns = ["ID", "Malignant/Benign"] + features3
-
-  # Some cleaning and splitting
-  x = data.loc[:,features3]
-  classif = data["Malignant/Benign"]
-  y = []
-  for index in classif:
-      if index == "B":
-          y.append(0)
-      else:
-          y.append(1)
-  split = int(0.8 * len(x))
-  if mode == "train":
-      x = np.asarray(x[:split])
-      y = np.asarray(y[:split])
-  else:
-      x = np.asarray(x[split:])
-      y = np.asarray(y[split:])
-  x_shape=x.shape
-  y_shape=y.shape
-
-  def build():
-    # input = tf.get_variable(tf.convert_to_tensor(x))
-    # return tf.get_variable(tf.convert_to_tensor(y))
-    input = tf.get_variable("x",
-                        # shape=[x.shape[0], x.shape[1]],
-                        dtype=tf.float64,
-                        initializer=tf.convert_to_tensor(x))
-
-  return tf.constant(y, dtype=tf.int64, name="labels")
+# def breast_cancer(mode="train"):
+#   """For our problem"""
+#   # Creating data from file
+#   data = pd.read_csv("data/wdbc.data", sep=",", header=None)
+#   features = ["radius", "texture", "perimeter", "area", "smoothness", "compactness", "concavity", "concave pts",
+#             "symmetry", "frac. dim"]
+#   features3 = []
+#   descr = ["mean", "stderr", "worst"]
+#   for i in range(30):
+#       if i < 10:
+#           features3.append(descr[0] + " "+ features[i%10])
+#       elif i < 20:
+#           features3.append(descr[1] + " " + features[i%10])
+#       else:
+#           features3.append(descr[2] + " " + features[i%10])
+#   data.columns = ["ID", "Malignant/Benign"] + features3
+#
+#   # Some cleaning and splitting
+#   x = data.loc[:,features3]
+#   classif = data["Malignant/Benign"]
+#   y = []
+#   for index in classif:
+#       if index == "B":
+#           y.append(0)
+#       else:
+#           y.append(1)
+#   split = int(0.8 * len(x))
+#   if mode == "train":
+#       x = np.asarray(x[:split])
+#       y = np.asarray(y[:split])
+#   else:
+#       x = np.asarray(x[split:])
+#       y = np.asarray(y[split:])
+#   x_shape=x.shape
+#   y_shape=y.shape
+#
+#   def build():
+#     # input = tf.get_variable(tf.convert_to_tensor(x))
+#     # return tf.get_variable(tf.convert_to_tensor(y))
+#     input = tf.get_variable("x",
+#                         # shape=[x.shape[0], x.shape[1]],
+#                         dtype=tf.float64,
+#                         initializer=tf.convert_to_tensor(x))
+#
+#   return tf.constant(y, dtype=tf.int64, name="labels")
 
 def simple_multi_optimizer(num_dims=2):
   """Multidimensional simple problem."""
@@ -216,12 +216,15 @@ def breast_cancer_try(layers, activation="sigmoid", mode="train"):
   for elem2 in data_list:
     data_x.append(elem2[2:])
 
+
+  split = int(0.8 * len(x))
   if mode == "train":
-    x = np.array(data_x[0:469])
-    y = np.array(data_y[0:469])
+      x = np.asarray(x[:split])
+      y = np.asarray(y[:split])
   else:
-    x = np.array(data_x[469:])
-    y = np.array(data_y[469:])
+      x = np.asarray(x[split:])
+      y = np.asarray(y[split:])
+
 
   x = tf.constant(x, dtype=tf.float32, name="inputs")
   y = tf.constant(y, dtype=tf.int64, name="labels")

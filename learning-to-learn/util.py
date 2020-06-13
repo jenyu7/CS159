@@ -72,19 +72,19 @@ def get_config(problem_name, path=None):
     net_assignments = None
   # This is for getting our problem
 
-  elif problem_name == "breast_cancer":
-    mode = "train" if path is None else "test"
-    problem = problems.breast_cancer(mode=mode)
-    net_config = {"cw": {
-        "net": "CoordinateWiseDeepLSTM",
-        "net_options": {"layers": (), "initializer": "zeros"},
-        "net_path": get_net_path("cw", path)
-    }}
-    net_assignments = None
+  # elif problem_name == "breast_cancer":
+  #   mode = "train" if path is None else "test"
+  #   problem = problems.breast_cancer(mode=mode)
+  #   net_config = {"cw": {
+  #       "net": "CoordinateWiseDeepLSTM",
+  #       "net_options": {"layers": (), "initializer": "zeros"},
+  #       "net_path": get_net_path("cw", path)
+  #   }}
+  #   net_assignments = None
 
   elif problem_name == "breast_cancer_try":
     mode = "train" if path is None else "test"
-    problem = problems.breast_cancer_try(layers=(6,), mode=mode)
+    problem = problems.breast_cancer_try(layers=(8,), mode=mode)
     net_config = {"cw": get_default_net_config("cw", path)}
     net_assignments = None
 
