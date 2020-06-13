@@ -84,7 +84,7 @@ def get_config(problem_name, path=None):
 
   elif problem_name == "breast_cancer_try":
     mode = "train" if path is None else "test"
-    problem = problems.breast_cancer_try(layers=(2,), mode=mode)
+    problem = problems.breast_cancer_try(layers=(6,), mode=mode)
     net_config = {"cw": get_default_net_config("cw", path)}
     net_assignments = None
 
